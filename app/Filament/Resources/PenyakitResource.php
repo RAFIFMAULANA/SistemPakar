@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PenyakitResource\Pages;
-use App\Filament\Resources\PenyakitResource\RelationManagers;
 use App\Models\Penyakit;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput; // Import TextInput
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PenyakitResource extends Resource
 {
@@ -23,6 +20,7 @@ class PenyakitResource extends Resource
     {
         return $form
             ->schema([
+                // Tidak perlu kolom 'penyakit_id' karena itu adalah primary key yang otomatis
                 TextInput::make('kode') // Nama field sesuai dengan database
                     ->label('Kode')
                     ->required(),
@@ -41,12 +39,13 @@ class PenyakitResource extends Resource
     {
         return $table
             ->columns([
+                // Menghapus kolom 'penyakit_id' karena itu adalah primary key
                 Tables\Columns\TextColumn::make('kode')->label('Kode'),
                 Tables\Columns\TextColumn::make('nama')->label('Nama Penyakit'),
                 Tables\Columns\TextColumn::make('solusi')->label('Solusi'),
             ])
             ->filters([
-                //
+                // Tambahkan filter jika diperlukan
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -59,7 +58,7 @@ class PenyakitResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // Definisikan relasi jika diperlukan
         ];
     }
 

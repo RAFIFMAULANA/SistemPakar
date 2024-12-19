@@ -20,6 +20,7 @@ class GejalaResource extends Resource
     {
         return $form
             ->schema([
+                // Tidak perlu menambahkan 'gejala_id' karena itu adalah primary key yang otomatis
                 TextInput::make('kode') // Nama field sesuai dengan database
                     ->label('Kode')
                     ->required()
@@ -35,12 +36,11 @@ class GejalaResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('gejala_id')->label('Id Gejala'),
                 Tables\Columns\TextColumn::make('kode')->label('Kode'),
                 Tables\Columns\TextColumn::make('gejala')->label('Gejala'),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([ /* Tambahkan filter jika diperlukan */ ])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -52,7 +52,7 @@ class GejalaResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // Tambahkan relasi jika ada
         ];
     }
 

@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('gejalas', function (Blueprint $table) {
-            $table->id();
-            $table->string('kode');
-            $table->string('gejala');
-            $table->timestamps();
+            $table->bigIncrements('gejala_id'); // Kolom primary key
+            $table->string('kode'); // Kolom kode untuk gejala
+            $table->string('gejala'); // Kolom deskripsi gejala
+            $table->timestamps(); // Kolom created_at dan updated_at
         });
     }
 
